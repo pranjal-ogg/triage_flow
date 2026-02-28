@@ -95,15 +95,15 @@ Once a flowchart is loaded into the Navigate Mode, all traversal logic runs enti
 │                                                     │
 │  ┌─────────────────┐      ┌──────────────────────┐  │
 │  │  REACT FRONTEND │◄────►│  NODE.JS + EXPRESS   │  │
-│  │                 │      │      BACKEND          │  │
+│  │                 │      │      BACKEND         │  │
 │  │  - Builder Mode │      │                      │  │
 │  │  - Navigate Mode│      │  - REST API Routes   │  │
 │  │  - React Flow   │      │  - Flowchart CRUD    │  │
 │  └─────────────────┘      └──────────┬───────────┘  │
 │                                      │              │
 │                            ┌─────────▼────────┐     │
-│                            │    MONGODB        │     │
-│                            │  (Local Instance) │     │
+│                            │    MONGODB        │    │
+│                            │  (Local Instance) │    │
 │                            └──────────────────┘     │
 └─────────────────────────────────────────────────────┘
 ```
