@@ -64,8 +64,6 @@ const flowchartSchema = new mongoose.Schema({
 
 const Flowchart = mongoose.model('Flowchart', flowchartSchema);
 
-// --- Middleware ---
-// Verify JWT token on every protected request
 const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1]
   if (!token) return res.status(401).json({ message: 'No token provided' })
@@ -78,36 +76,29 @@ const authMiddleware = (req, res, next) => {
   }
 }
 
-// Only allow doctors and admins
 const doctorOnly = (req, res, next) => {
   if (req.user.role === 'nurse') 
     return res.status(403).json({ message: 'Doctors only' })
   next()
 }
 
-// Only allow admins
 const adminOnly = (req, res, next) => {
   if (req.user.role !== 'admin')
     return res.status(403).json({ message: 'Admins only' })
   next()
 }
 
-// --- Auth Routes ---
-// --- Auth & Admin Routes ---
-// HOSPITAL REGISTRATION (no auth needed)
+
 app.post('/api/hospital/register', async (req, res) => {
   try {
     const { hospitalName, location, adminName, adminEmail, adminPassword } = req.body;
     
-    // Check if user already exists
     let existingAdmin = await User.findOne({ email: adminEmail });
     if (existingAdmin) return res.status(400).json({ message: 'Email already registered' });
 
-    // Create hospital
     const hospital = new Hospital({ name: hospitalName, location });
     await hospital.save();
 
-    // Create Admin user
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(adminPassword, salt);
 
@@ -127,7 +118,6 @@ app.post('/api/hospital/register', async (req, res) => {
   }
 });
 
-// LOGIN (no auth needed)
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -150,7 +140,6 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-// GET CURRENT USER (protected)
 app.get('/api/auth/me', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select('-password');
@@ -160,7 +149,6 @@ app.get('/api/auth/me', authMiddleware, async (req, res) => {
   }
 });
 
-// CREATE STAFF (admin only)
 app.post('/api/staff/create', authMiddleware, adminOnly, async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
@@ -189,7 +177,6 @@ app.post('/api/staff/create', authMiddleware, adminOnly, async (req, res) => {
   }
 });
 
-// GET ALL STAFF (admin only)
 app.get('/api/staff', authMiddleware, adminOnly, async (req, res) => {
   try {
     const staff = await User.find({ 
@@ -202,7 +189,6 @@ app.get('/api/staff', authMiddleware, adminOnly, async (req, res) => {
   }
 });
 
-// DELETE STAFF (admin only)
 app.delete('/api/staff/:id', authMiddleware, adminOnly, async (req, res) => {
   try {
     const user = await User.findOneAndDelete({ _id: req.params.id, hospitalId: req.user.hospitalId });
@@ -213,7 +199,6 @@ app.delete('/api/staff/:id', authMiddleware, adminOnly, async (req, res) => {
   }
 });
 
-// --- Flowchart Routes ---
 app.get('/api/flowcharts', authMiddleware, async (req, res) => {
   try {
     const flowcharts = await Flowchart.find({ 
@@ -294,7 +279,6 @@ app.post('/api/flowchart/:id/navigate', authMiddleware, async (req, res) => {
   }
 });
 
-// --- Seeding ---
 const seedExpertFlowcharts = async () => {
   try {
     const expertCount = await Flowchart.countDocuments({ isExpert: true });
@@ -303,7 +287,6 @@ const seedExpertFlowcharts = async () => {
       const fs = require('fs');
       const path = require('path');
       
-      // We will parse the exact nodes/edges requested conceptually.
       const expert1 = {
         name: "Fever & Respiratory Assessment",
         category: "Fever",
