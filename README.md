@@ -89,9 +89,8 @@ Live Demo Link- ** `https://triage-flow-qp7y.onrender.com](https://triage-flow-c
 6. Nurse adds final notes and saves. Doctor can review the finalized assessment report.
 
 ## 12. Demo & Video
-*   **Live Demo Link:** [Insert Vercel Link here]
+*   **Live Demo Link:** `https://triage-flow-chi.vercel.app/`
 *   **Backend API Link:** `https://triage-flow-qp7y.onrender.com`
-*   **Demo Video Link:** [Insert YouTube/Drive Link here]
 
 
 ## 13. Hackathon Deliverables Summary
