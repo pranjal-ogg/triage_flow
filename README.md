@@ -97,11 +97,6 @@ Live Demo Link- ** `https://triage-flow-qp7y.onrender.com](https://triage-flow-c
 ## 13. Hackathon Deliverables Summary
 Delivered a fully functional, market-ready, visually stunning prototype featuring 3D web elements, a custom visual algorithm builder, deterministic logic execution, comprehensive RBAC security, and automated reporting.
 
-## 14. Team Roles & Responsibilities
-| Member Name | Role | Responsibilities |
-| :--- | :--- | :--- |
-| Harsh | Full Stack Developer | Architecture, UI/UX Design, React Flow Integration, API Development |
-| [Name] | [Role] | [Responsibilities] |
 
 ## 15. Future Scope & Scalability
 *   **Short-Term:** Integrate predictive ML models as an *advisory* overlay to assist Doctors while they build protocols. Add SMS/Email paging alerts for 'RED' priority assessments.
