@@ -26,7 +26,7 @@ TriageFlow utilizes a decoupled MERN stack architecture. The frontend maintains 
   * **Hospital:** Core tenant storing clinic information.
   * **User:** Polymorphic schema handling `admin`, `doctor`, and `nurse` roles, linked via `HospitalId`.
   * **Flowchart:** Stores `nodes` (questions/outcomes) and `edges` (connections) arrays to represent the graph state.
-  * **Report:** Audit trail storing the executed `questionHistory`, final `outcome`, `riskScore`, and Nurse `notes`.
+  * **Report:** Audit trail storing the executed `questionHistory`, final `outcome`, and Nurse `notes`.
 
 ## 💻 Tech Stack
 
