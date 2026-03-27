@@ -65,6 +65,3 @@ The RESTful API is secured via JWT. Core endpoints include:
   * **Critical Alerts:** Automated SMS/Email paging hooks triggered immediately when a "RED" (critical) pathway is reached.
   * **Multi-Tenant Network:** Allow isolated, low-resource clinics to securely subscribe to and download expert protocols published by top-tier medical research hospitals.
 
------
-
-Would you like me to help you craft 3-4 strong, action-oriented bullet points summarizing this project to place directly under the "Projects" section of your actual resume?
